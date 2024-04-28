@@ -25,7 +25,7 @@ import { first, last } from 'rxjs';
         </section>
         <section class="listing-apply">
           <h2 class="section-heading">Apply now to live</h2>
-          <form [formGroup]="applyForm">
+          <form [formGroup]="applyForm" (submit)="submitApplication()">
             <label for="firs-name">First Name</label>
             <input type="text" id="first-name" formControlName="firstName">
 
@@ -56,6 +56,13 @@ export class DetailsComponent {
 
  constructor() {
    const housingLocationId = Number(this.route.snapshot.params['id']);
-   this.housingLocation = this.housingService.getHousingLocationById(housingLocationId);
+   this.housingService.getHousingLocationById(housingLocationId).then((housingLocation: HousingLocation | undefined) => this.housingLocation = housingLocation);}
+
+ submitApplication() {
+    this.housingService.submitApplication(
+      this.applyForm.value.firstName ?? '',
+      this.applyForm.value.lastName ?? '',
+      this.applyForm.value.email ?? '',)
+      // ? => means that if the value is null or undefined, it will use the value after the ??
  }
 }
