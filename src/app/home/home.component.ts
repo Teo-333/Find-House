@@ -117,9 +117,10 @@ export class HomeComponent {
   name: 'Capital Safe Towns',
   city: 'Portland',
   state: 'OR',
-  photo: '../../assets/pexels-scottwebb-1029599.jpg',
+  photo: '../../assets/pexels-pixabay-221024.jpg',
   availableUnits: 6,
   wifi: true,
   laundry: true
 }];
 }
+``
