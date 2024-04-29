@@ -9,34 +9,44 @@ export class HousingService {
 
   constructor() { }
 
-  async getAllHousingLocations(): Promise<HousingLocation[]> {
-    try {
-        const response = await fetch(this.url);
-        if (!response.ok) {
+//   async getAllHousingLocations(): Promise<HousingLocation[]> {
+//     try {
+//         const response = await fetch(this.url);
+//         if (!response.ok) {
          
-            throw new Error('Network response was not ok');
-        }
-        const jsonData = await response.json(); 
-        return jsonData;
-    } catch (error) {
-        console.error('Failed to fetch housing locations:', error);
-        return [];
-    }
-}
+//             throw new Error('Network response was not ok');
+//         }
+//         const jsonData = await response.json(); 
+//         return jsonData;
+//     } catch (error) {
+//         console.error('Failed to fetch housing locations:', error);
+//         return [];
+//     }
+// }
 
+async getAllHousingLocations(): Promise<HousingLocation[]> {
+  const data = await fetch(this.url);
+  return await data.json();
+};
 
 async getHousingLocationById(id: number): Promise<HousingLocation | undefined> {
-  try {
-      const response = await fetch(`${this.url}/${id}`);
-      if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return await response.json(); 
-  } catch (error) {
-      console.error('Failed to fetch housing location:', error);
-      return undefined; 
-  }
+  const data = await fetch(`${this.url}/${id}`);
+  return await data.json() ?? {};
 }
+
+
+// async getHousingLocationById(id: number): Promise<HousingLocation | undefined> {
+//   try {
+//       const response = await fetch(`${this.url}/${id}`);
+//       if (!response.ok) {
+//           throw new Error(`HTTP error! Status: ${response.status}`);
+//       }
+//       return await response.json(); 
+//   } catch (error) {
+//       console.error('Failed to fetch housing location:', error);
+//       return undefined; 
+//   }
+// }
 
 
   submitApplication(firstName: string, lastName: string, email: string) {
