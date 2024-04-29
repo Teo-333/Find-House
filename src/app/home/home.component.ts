@@ -32,8 +32,7 @@ export class HomeComponent {
     this.filteredLocationList = housingLocationList;
   });
 }
-// ! FIX FILTER FUNCTION
-// TODO: fix filter function, don't forget to turn on db
+
   filterResults(text: string) {
     if(!text) this.filteredLocationList = this.housingLocationList;
     
